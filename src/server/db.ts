@@ -1,18 +1,17 @@
 import { PrismaClient } from "@prisma/client";
-import { PrismaLibSQL } from "@prisma/adapter-libsql";
-import { createClient } from "@libsql/client";
 import { env } from "@/env.mjs";
+import { PrismaNeon } from '@prisma/adapter-neon'
+import { Pool } from '@neondatabase/serverless'
+
+const connectionString = `${process.env.DATABASE_URL}`
+
+const pool = new Pool({ connectionString })
+const adapter = new PrismaNeon(pool)
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
-const libsql = createClient({
-  url: env.TURSO_DATABASE_URL ?? "",
-  authToken: env.TURSO_AUTH_TOKEN ?? "",
-});
-
-const adapter = new PrismaLibSQL(libsql);
 
 export const db =
   globalForPrisma.prisma ??
