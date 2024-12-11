@@ -15,24 +15,28 @@ export const getLinksAndTagsByUser = cache(async () => {
   }
 
   try {
-    
+
     const linkData = await db.links.findMany({
-      where: {
-        creatorId: currentUser.user?.id,
-      },
+      // 12/11/2024 - Business decision to let users see all links from all other users for now.
+      // At some level of scale this wont work, but fine for now
+      // where: {
+      //   creatorId: currentUser.user?.id,
+      // },
       include: {
         tags: true,
       },
     });
 
     const tagsData = await db.tags.findMany({
-      where: {
-        creatorId: currentUser.user?.id,
-      },
+      // 12/11/2024 - Business decision to let users see all links from all other users for now.
+      // At some level of scale this wont work, but fine for now
+      // where: {
+      //   creatorId: currentUser.user?.id,
+      // },
     });
 
     return {
-      limit: currentUser.user?.limitLinks,
+      limit: 99999, //currentUser.user?.limitLinks,
       links: linkData,
       tags: tagsData,
     };
@@ -55,9 +59,11 @@ export const getTagsByUser = cache(async () => {
   }
 
   const tagsData = await db.tags.findMany({
-    where: {
-      creatorId: currentUser.user?.id,
-    },
+    // 12/11/2024 - Business decision to let users see all links from all other users for now.
+    // At some level of scale this wont work, but fine for now
+    // where: {
+    //   creatorId: currentUser.user?.id,
+    // },
   });
 
   return tagsData;

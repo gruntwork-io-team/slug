@@ -68,7 +68,7 @@ export const {
         session.user.name = token.name;
         session.user.email = token.email!;
         session.user.isOAuth = token.isOAuth as boolean;
-        session.user.limitLinks = token.limitLinks as number;
+        session.user.limitLinks = 99999; //token.limitLinks as number;
       }
 
       return session;
@@ -87,7 +87,7 @@ export const {
       token.email = existingUser.email;
       token.role = existingUser.role;
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
-      token.limitLinks = existingUser.limitLinks;
+      token.limitLinks = 99999; //existingUser.limitLinks;
 
       return token;
     },
