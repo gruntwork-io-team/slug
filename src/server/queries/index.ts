@@ -32,7 +32,7 @@ export const getLinksAndTagsByUser = cache(async () => {
     });
 
     return {
-      limit: currentUser.user?.limitLinks,
+      limit: 99999, //currentUser.user?.limitLinks,
       links: linkData,
       tags: tagsData,
     };

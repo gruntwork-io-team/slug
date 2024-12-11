@@ -80,7 +80,7 @@ export const createLink = async (
   });
 
   // Check if the user has reached the limit:
-  const limit = currentUser.user?.limitLinks;
+  const limit = 99999; //currentUser.user?.limitLinks;
   if (count >= limit) {
     return {
       limit: true,
