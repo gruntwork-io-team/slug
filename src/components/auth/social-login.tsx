@@ -15,11 +15,6 @@ const socialProviders = [
     icon: <GoogleLogo className="h-4 w-4" />,
     provider: "google",
   },
-  {
-    name: "Continue with GitHub",
-    icon: <GithubLogo className="h-4 w-4" />,
-    provider: "github",
-  },
 ];
 
 const SocialLogin = () => {
